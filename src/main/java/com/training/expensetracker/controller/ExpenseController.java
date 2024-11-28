@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ExpenseController {
 
     @Autowired
@@ -22,7 +23,7 @@ public class ExpenseController {
     @PostMapping("/expense")
     ResponseEntity<?> addExpense(@RequestBody Expense expense) {
         expenseService.addExpense(expense);
-        return new ResponseEntity<>( "Expense created Successfully" ,HttpStatus.OK);
+        return new ResponseEntity<>( expenseService.getAllExpense() ,HttpStatus.OK);
     }
 
     @PostMapping("/expensebyidcategory")
